@@ -1,7 +1,7 @@
 import sharp from 'sharp';
 const resizeReg = /\D+(\d+)[xX*](\d+)\.webp$/;
 
-const sharpImg = (absPath: string, nPath: string, type: string): Promise<any> => {
+const sharpImg = (absPath: string, nPath: string, type: string, options: any): Promise<any> => {
     let width = null;
     let height = null;
     resizeReg.lastIndex = 0;
@@ -14,7 +14,7 @@ const sharpImg = (absPath: string, nPath: string, type: string): Promise<any> =>
             try {
                 sharp(absPath)
                     .resize({ width, height })
-                    .avif()
+                    .avif(options.opt)
                     .toFile(nPath, (err, info) => {
                         if (err) {
                             reject(err);
@@ -29,7 +29,7 @@ const sharpImg = (absPath: string, nPath: string, type: string): Promise<any> =>
             try {
                 sharp(absPath)
                     .resize({ width, height })
-                    .webp()
+                    .webp(options.opt)
                     .toFile(nPath, (err, info) => {
                         if (err) {
                             reject(err);

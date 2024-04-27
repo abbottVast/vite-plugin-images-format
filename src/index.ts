@@ -4,8 +4,13 @@ import { name  } from '../package.json';
 interface IOptions {
     entry: string;
     imageType: Array<string>;
-    sharpType: Array<string>;
+    sharpType: 'webp' | 'avif';
+    opt: {
+        quality: number;
+        effort: number;
+    };
     outDir: string;
+    isClear: boolean;
     replaceList: Array<string>;
     isReplacePath: boolean;
 }
@@ -13,9 +18,11 @@ interface IOptions {
 export default function main(options: IOptions | unknown = {}) {
     const customOpts: IOptions = {
         entry: '', //入口
-        imageType: ['.png', '.jpg'], // 处理图片类型
-        sharpType: ['webp'], //生成的格式
+        imageType: ['.png', '.jpg'], //处理图片类型
+        sharpType: 'webp', //生成的格式 webp 或 avif
+        opt: { quality: 75,  effort: 4 }, //图片压缩参数
         outDir: '', //输出目录
+        isClear: true, //是否清理重新生成
         isReplacePath: true, //是否替换图片引用路径
         replaceList: ['.vue'], //需要替换图片引用路径文件的扩展名
     };

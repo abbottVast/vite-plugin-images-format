@@ -20,23 +20,27 @@ function createWebp(dir: string, options: any, filesMapList: Array<IFileMapItem>
         if (helper.isDirectory(abs)) {
             createWebp(abs, options, filesMapList);
         } else if (helper.isTargetImage(abs, imageType)) {
-            if (Array.isArray(sharpType)) {
-                sharpType.forEach((type) => {
-                    //全局路径
-                    const nPath = helper.getWebpPath(abs, entry, outDir, type);
-                    const nPathParse = path.parse(nPath);
-                    if (fs.existsSync(nPathParse.dir)) {
-                        fs.mkdirSync(nPathParse.dir);
-                    }
-                    const samePath = helper.rtnSameStr(entry, outDir);
-                    filesMapList.push({
-                        old: abs.replace(samePath, ''),
-                        new: nPath.replace(samePath, '')
-                    });
-                    sharpImg(abs, nPath, type);
+            if (['webp', 'avif'].includes(sharpType)) {
+                //全局路径
+                const nPath = helper.getWebpPath(abs, entry, outDir, sharpType);
+                const nPathParse = path.parse(nPath);
+                if (!fs.existsSync(nPathParse.dir)) {
+                    fs.mkdirSync(nPathParse.dir);
+                }
+                const samePath = helper.rtnSameStr(entry, outDir);
+                filesMapList.push({
+                    old: abs.replace(samePath, ''),
+                    new: nPath.replace(samePath, '')
                 });
+                if (options.isClear) {
+                    sharpImg(abs, nPath, sharpType, options);
+                } else {
+                    if (!fs.existsSync(nPath)) {
+                        sharpImg(abs, nPath, sharpType, options);
+                    }
+                }
             } else {
-                console.error('sharpType需为数组');
+                console.error('sharpType必须为webp或avif');
             }
         }
     });

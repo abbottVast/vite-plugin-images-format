@@ -1,6 +1,6 @@
 {
   "name": "vite-plugin-images-format",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "private": false,
   "description": "vite插件,转换webp、avif格式,并替换文件引用路径",
   "main": "lib/vite-plugin-images-format.js",
