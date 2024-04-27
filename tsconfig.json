@@ -1,0 +1,31 @@
+{
+  "compilerOptions": {
+    "ignoreDeprecations":"5.0",
+    "lib": ["es2021","DOM"],
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "module": "ESNext",
+    "types": ["node"],
+    "typeRoots": ["node_modules/@types"],
+    "target": "es6",
+    "allowJs": true,
+    "removeComments": false,
+    "preserveConstEnums": true,
+    "sourceMap": true,
+    "declaration": true,
+    "baseUrl": ".",
+    "skipLibCheck": true,
+    "importHelpers": true,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "experimentalDecorators": true,
+    "resolveJsonModule": true,
+    "noImplicitThis": false,
+    "declarationMap": false,
+    "newLine": "lf",
+    
+  },
+  "exclude": ["node_modules"],
+  "include": ["./src/**/*.ts"],
+  "compileOnSave": true
+}
