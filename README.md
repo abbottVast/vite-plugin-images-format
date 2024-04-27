@@ -2,8 +2,15 @@
 
 vite插件: 把png,jpg图片转换成webp或avif格式,并替换文件引用路径
 
-## 用法
+## 用法1
+```json
+// package.json 中添加开发环境依赖
+  "devDependencies": {
+    "vite-plugin-images-format": "git+ssh://git@github.com:abbottVast/vite-plugin-images-format.git#v1.0.0"
+  }
+```
 
+## 用法2 【尚未发布npm】
 ```bash
 npm install vite-plugin-images-format -D
 ```
@@ -16,13 +23,12 @@ export default defineConfig({
       imagesFormat({
           entry: resolve(__dirname, './src/public/images'),  //入口目录
           outDir: resolve(__dirname, 'src/public/images/artifact'),  //输入目录
-
       })
   ]
 });
 ```
 
-## 配置
+## 配置 【默认值】
 
 ```javascript
 {
