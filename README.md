@@ -10,7 +10,7 @@ vite插件: 把png,jpg图片转换成webp或avif格式,并替换文件引用路�
   }
 ```
 
-## 用法2 【尚未发布npm】
+## 用法2
 ```bash
 npm install vite-plugin-images-format -D
 ```
