@@ -50,7 +50,7 @@ export default [
         plugins: [terser()]
       },
       {
-        file: `lib/${name}.esm.js`,
+        file: `lib/${name}.esm.mjs`,
         format: 'esm',
         banner
       }

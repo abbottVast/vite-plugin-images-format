@@ -25,7 +25,7 @@ function createWebp(dir: string, options: any, filesMapList: Array<IFileMapItem>
                 const nPath = helper.getWebpPath(abs, entry, outDir, sharpType);
                 const nPathParse = path.parse(nPath);
                 if (!fs.existsSync(nPathParse.dir)) {
-                    fs.mkdirSync(nPathParse.dir);
+                    fs.mkdirSync(nPathParse.dir, { recursive: true });
                 }
                 const samePath = helper.rtnSameStr(entry, outDir);
                 filesMapList.push({
@@ -46,7 +46,10 @@ function createWebp(dir: string, options: any, filesMapList: Array<IFileMapItem>
     });
 }
 export const handle = (options: any, filesMapList: Array<IFileMapItem>) => {
-    const { entry } = options;
+    const { entry, outDir, isClear } = options;
+    if (isClear && fs.existsSync(outDir)) {
+        fs.rmdirSync(outDir);
+    }
     const arr = helper.toArray(entry);
     for (let i = 0; i < arr.length; i++) {
         const dir: string = arr[i];

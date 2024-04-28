@@ -1,13 +1,17 @@
 {
   "name": "vite-plugin-images-format",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "private": false,
   "description": "vite插件,转换webp、avif格式,并替换文件引用路径",
   "main": "lib/vite-plugin-images-format.js",
-  "module": "lib/vite-plugin-images-format.esm.js",
+  "module": "lib/vite-plugin-images-format.esm.mjs",
+  "types": "lib/src/index.d.ts",
   "exports": {
-    "import": "./lib/vite-plugin-images-format.esm.js",
-    "require": "./lib/vite-plugin-images-format.js"
+    ".": {
+      "import": "./lib/vite-plugin-images-format.esm.mjs",
+      "require": "./lib/vite-plugin-images-format.js",
+      "types": "./lib/src/index.d.ts"
+    }
   },
   "scripts": {
     "dev": "NODE_ENV=development rollup -c -w",
