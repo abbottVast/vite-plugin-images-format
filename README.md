@@ -14,7 +14,7 @@ export default defineConfig({
   plugins: [
       imagesFormat({
         entry: resolve(__dirname, './src/public/images'),  //入口目录
-        outDir: resolve(__dirname, 'src/public/images/artifact'),  //输入目录，建议将目录加入忽略文件，不用提交转化后的图片到仓库, //输出目录
+        outDir: resolve(__dirname, 'src/public/images/artifact'),   //输出目录，建议将目录加入忽略文件，不用提交转化后的图片到仓库,
         imageType: ['.png', '.jpg'], //处理图片类型
         sharpType: 'webp', //生成的格式 webp 或 avif
         opt: { quality: 75,  effort: 4 }, //图片压缩参数

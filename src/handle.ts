@@ -45,10 +45,29 @@ function createWebp(dir: string, options: any, filesMapList: Array<IFileMapItem>
         }
     });
 }
+
+function deleteFolder(filePath: string) {
+    if (fs.existsSync(filePath)) {
+        const files = fs.readdirSync(filePath);
+        files.forEach((file) => {
+            const nextFilePath = `${filePath}/${file}`;
+            const states = fs.statSync(nextFilePath);
+            if (states.isDirectory()) {
+                //recurse
+                deleteFolder(nextFilePath);
+            } else {
+                //delete file
+                fs.unlinkSync(nextFilePath);
+            }
+        });
+        fs.rmdirSync(filePath);
+    }
+}
+
 export const handle = (options: any, filesMapList: Array<IFileMapItem>) => {
     const { entry, outDir, isClear } = options;
     if (isClear && fs.existsSync(outDir)) {
-        fs.rmdirSync(outDir);
+        deleteFolder(outDir);
     }
     const arr = helper.toArray(entry);
     for (let i = 0; i < arr.length; i++) {
